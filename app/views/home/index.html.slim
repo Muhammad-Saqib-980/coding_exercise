@@ -1,0 +1,62 @@
+div data-controller="employment"
+  div data-controller="personal"
+    button.btn.btn-blue data-action="personal#open"
+      | Personal Data
+    br
+    br
+    button.btn.btn-blue data-action="employment#open"
+      | Employment
+    br
+    br
+    div data-personal-target="container" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center"
+      div class="max-w-lg max-h-screen w-full relative"
+        div class="m-1 bg-white rounded shadow"
+          div class="px-4 py-5 border-b border-gray-200 sm:px-6"
+            h3 class="text-lg leading-6 font-medium text-gray-900"
+              | Personal Data
+            form#personal-form action="#" data-controller="form"
+              div.form-group.mb-4
+                = label_tag :first_name, "First Name", class: "block text-gray-700 text-sm font-bold mb-2"
+                = text_field_tag :first_name, nil, maxLength: 25, required: true, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { "personal-target": "fname"}
+              div.form-group.mb-4
+                = label_tag :last_name, "Last Name", class: "block text-gray-700 text-sm font-bold mb-2"
+                = text_field_tag :last_name, nil, maxLength: 50, required: true, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { "personal-target": "lname"}
+              div.form-group.mb-4
+                = label_tag :nick_name, "Nick Name", class: "block text-gray-700 text-sm font-bold mb-2"
+                = text_field_tag :nick_name,nil, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { "personal-target": "nickname"}
+              div.form-group.mb-4
+                = label_tag :email, "Email Address", class: "block text-gray-700 text-sm font-bold mb-2"
+                = email_field :email , nil, required: true, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { "personal-target": "email"}
+              div.form-group.mb-4
+                = label_tag :phone_number, "Phone Number", class: "block text-gray-700 text-sm font-bold mb-2"
+                = text_field_tag :phone_number, nil, required: true, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { "personal-target": "phone"}
+            button.form-control.btn.btn-grey data-action="personal#cancel"
+              | Cancel
+            button class="ml-5 btn btn-blue disabled:opacity-50" data-action="personal#save" data-personal-target="save"
+              | save
+    div data-employment-target="container" data-personal-target="eform" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center" 
+      div class="max-w-lg max-h-screen w-full relative"
+        div class="m-1 bg-white rounded shadow"
+          div class="px-4 py-5 border-b border-gray-200 sm:px-6"
+            h3 class="text-lg leading-6 font-medium text-gray-900"
+              | Employment
+            form#employment-form action="#" data-controller="form"
+              div.form-group.mb-4
+                = label_tag :employer, "Employer", class: "block text-gray-700 text-sm font-bold mb-2"
+                = text_field_tag :employer, nil, maxLength: 50, required: true, class: "form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", data: { "personal-target": "fname"}
+              div.mb-4
+                = label_tag :date_started, "Date Started", class: "block text-gray-700 text-sm font-bold mb-2"
+                .relative
+                  div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                    svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                      path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"
+                  input datepicker=true name="date_started" required=true datepicker-format="mm/dd/yyyy" type="text" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pl-10" placeholder="Select date"
+              div.mb-4
+                = label_tag :date_ended, "Date Employment Ended", class: "block text-gray-700 text-sm font-bold mb-2"
+                .relative
+                  div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
+                    svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+                      path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"
+                  input datepicker=true name="date_ended" required=true datepicker-format="mm/dd/yyyy" type="text" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline pl-10" placeholder="Select date"
+            button class="ml-5 btn btn-blue disabled:opacity-50" data-action="employment#save" data-employment-target="save"
+              | Add Employment
